@@ -1,1 +1,1 @@
-web: ./run.sh
+web: java -Dserver.port=8080 -Dspring.profiles.active=prod -jar ./build/libs/makeboard-0.0.1-SNAPSHOT.jar
