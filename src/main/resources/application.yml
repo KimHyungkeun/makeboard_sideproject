@@ -1,0 +1,15 @@
+# postgresql
+spring:
+  datasource :
+    hikari :
+      maximum-pool-size : 5
+    jdbc-url : jdbc:postgresql://batyr.db.elephantsql.com:5432/aczudwgr?currentSchema=makeboard_schema
+    username : aczudwgr
+    password : mHr2STdd10ysPytzpzLBf-gZkVv3-sVM
+    driver-class-name : org.postgresql.Driver
+    mapper-locations: classpath:/mybatis/mapper/BoardMapper.xml
+
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  configuration:
+    map-underscore-to-camel-case: true
