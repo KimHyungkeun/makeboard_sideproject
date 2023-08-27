@@ -1,6 +1,7 @@
 package com.sideproject.makeboard.mapper;
 
 import com.sideproject.makeboard.dto.BoardInfo;
+import com.sideproject.makeboard.dto.BoardInfoWithId;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 @Repository
 public interface BoardMapper {
     List<BoardInfo> getBoardInfo (Integer offset, Integer listCnt);
-    BoardInfo getBoardInfoWithId (Integer id);
+    BoardInfoWithId getBoardInfoWithId (Integer id);
 
     void setBoardInfo();
 }

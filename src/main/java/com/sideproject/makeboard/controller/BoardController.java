@@ -1,12 +1,11 @@
 package com.sideproject.makeboard.controller;
 
 import com.sideproject.makeboard.dto.BoardInfo;
+import com.sideproject.makeboard.dto.BoardInfoWithId;
 import com.sideproject.makeboard.dto.BoardInsertInfo;
 import com.sideproject.makeboard.service.BoardService;
 
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,16 +25,15 @@ public class BoardController {
         return boardService.getBoardInfo(page, listCnt);
     }
 
-    // 20230827 406 코드 발생
     @GetMapping("view")
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public @ResponseBody BoardInfo getBoardInfoWithId(@RequestParam(value = "id")Integer id) {
-        return boardService.getBoardInfoWithId(id);
+    public @ResponseBody BoardInfoWithId getBoardInfoWithId(@RequestParam(value = "id")Integer id) {
+        BoardInfoWithId boardInfoWithId = boardService.getBoardInfoWithId(id);
+        return boardInfoWithId;
     }
     
-    // 20230827 @RequestBody가 먹질 않는것인지, get이나 set할때 지정한 value가 안나옴 
+    // 20230827 @RequestBody가 먹질 않는것인지, get이나 set할때 지정한 value가 안나옴
     @PostMapping
-    public ResponseEntity<BoardInsertInfo> setBoardInfo(@RequestBody BoardInsertInfo boardInsertInfo) {
-        return null;
+    public void setBoardInfo(@RequestBody BoardInsertInfo boardInsertInfo) {
+
     }
 }

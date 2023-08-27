@@ -2,6 +2,7 @@ package com.sideproject.makeboard.service;
 
 
 import com.sideproject.makeboard.dto.BoardInfo;
+import com.sideproject.makeboard.dto.BoardInfoWithId;
 import com.sideproject.makeboard.dto.BoardInsertInfo;
 import com.sideproject.makeboard.mapper.BoardMapper;
 
@@ -26,8 +27,8 @@ public class BoardService {
 
     }
 
-    public BoardInfo getBoardInfoWithId (Integer id) {
-        BoardInfo boardInfo = boardMapper.getBoardInfoWithId(id);
+    public BoardInfoWithId getBoardInfoWithId (Integer id) {
+        BoardInfoWithId boardInfo = boardMapper.getBoardInfoWithId(id);
         return boardInfo;
     }
 
