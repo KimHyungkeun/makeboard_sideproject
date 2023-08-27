@@ -9,4 +9,7 @@ import java.util.List;
 @Repository
 public interface BoardMapper {
     List<BoardInfo> getBoardInfo (Integer offset, Integer listCnt);
+    BoardInfo getBoardInfoWithId (Integer id);
+
+    void setBoardInfo();
 }

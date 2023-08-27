@@ -11,5 +11,12 @@
         LIMIT #{listCnt};
     </select>
 
+    <select id="getBoardInfoWithId" resultType="com.sideproject.makeboard.dto.BoardInfo">
+        SELECT nickname, title, content, update_date
+        FROM baseboardlist
+        WHERE 1=1 AND id = #{id}
+        LIMIT 1;
+    </select>
+
 
 </mapper>

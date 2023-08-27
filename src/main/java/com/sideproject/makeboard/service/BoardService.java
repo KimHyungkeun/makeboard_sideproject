@@ -2,10 +2,10 @@ package com.sideproject.makeboard.service;
 
 
 import com.sideproject.makeboard.dto.BoardInfo;
+import com.sideproject.makeboard.dto.BoardInsertInfo;
 import com.sideproject.makeboard.mapper.BoardMapper;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,9 +20,20 @@ public class BoardService {
     }
 
     public List<BoardInfo> getBoardInfo (Integer page, Integer listCnt) {
-        int offset = (page * listCnt) - listCnt;
 
-        List<BoardInfo> boardInfos = boardMapper.getBoardInfo(offset, listCnt);
-        return boardInfos;
+        int offset = (page * listCnt) - listCnt;
+        return boardMapper.getBoardInfo(offset, listCnt);
+
     }
+
+    public BoardInfo getBoardInfoWithId (Integer id) {
+        BoardInfo boardInfo = boardMapper.getBoardInfoWithId(id);
+        return boardInfo;
+    }
+
+    public void setBoardInfo (BoardInsertInfo boardInsertInfo) {
+
+    }
+
+
 }
