@@ -4,15 +4,15 @@ package com.sideproject.makeboard.service;
 import com.sideproject.makeboard.dto.BoardInfo;
 import com.sideproject.makeboard.dto.BoardInfoWithId;
 import com.sideproject.makeboard.dto.BoardInsertInfo;
+import com.sideproject.makeboard.dto.BoardUpdateInfo;
 import com.sideproject.makeboard.mapper.BoardMapper;
 
-import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class BoardService {
 
     private final BoardMapper boardMapper;
@@ -20,20 +20,36 @@ public class BoardService {
         this.boardMapper = boardMapper;
     }
 
-    public List<BoardInfo> getBoardInfo (Integer page, Integer listCnt) {
+    public List<BoardInfo> getBoardInfo (Long page, Long listCnt) {
 
-        int offset = (page * listCnt) - listCnt;
+        long offset = (page * listCnt) - listCnt;
         return boardMapper.getBoardInfo(offset, listCnt);
 
     }
 
-    public BoardInfoWithId getBoardInfoWithId (Integer id) {
+    public BoardInfoWithId getBoardInfoWithId (Long id) {
         BoardInfoWithId boardInfo = boardMapper.getBoardInfoWithId(id);
         return boardInfo;
     }
 
     public void setBoardInfo (BoardInsertInfo boardInsertInfo) {
+        String nickName = boardInsertInfo.getNickname();
+        String password = boardInsertInfo.getPassword();
+        String title = boardInsertInfo.getTitle();
+        String content = boardInsertInfo.getContent();
+        boardMapper.setBoardInfo(nickName, password, title, content);
+    }
 
+    public void putBoardInfo (BoardUpdateInfo boardUpdateInfo) {
+        Long id = boardUpdateInfo.getId();
+        String password = boardUpdateInfo.getPassword();
+        String title = boardUpdateInfo.getTitle();
+        String content = boardUpdateInfo.getContent();
+        boardMapper.putBoardInfo(id, password, title, content);
+    }
+
+    public void deleteBoardInfo (Long id, String password) {
+        boardMapper.deleteBoardInfo(id, password);
     }
 
 

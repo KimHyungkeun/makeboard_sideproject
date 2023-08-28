@@ -18,5 +18,29 @@
         LIMIT 1;
     </select>
 
+    <insert id="setBoardInfo">
+        INSERT INTO baseboardlist (nickname, password, title, content, update_date)
+        VALUES (#{nickName}, #{password}, #{title}, #{content}, now());
+    </insert>
+
+    <update id="putBoardInfo">
+        UPDATE baseboardlist
+        SET
+            password = #{password},
+            title = #{title},
+            content = #{content},
+            update_date = now()
+        WHERE
+            id = #{id}
+    </update>
+
+    <delete id="deleteBoardInfo">
+        DELETE FROM baseboardlist
+        WHERE id = #{id} AND password = #{password}
+    </delete>
+
+
+
+
 
 </mapper>

@@ -9,8 +9,12 @@ import java.util.List;
 @Mapper
 @Repository
 public interface BoardMapper {
-    List<BoardInfo> getBoardInfo (Integer offset, Integer listCnt);
-    BoardInfoWithId getBoardInfoWithId (Integer id);
+    List<BoardInfo> getBoardInfo (Long offset, Long listCnt);
+    BoardInfoWithId getBoardInfoWithId (Long id);
 
-    void setBoardInfo();
+    void setBoardInfo(String nickName, String password, String title, String content);
+
+    void putBoardInfo(Long id, String password, String title, String content);
+
+    void deleteBoardInfo(Long id, String password);
 }

@@ -27,6 +27,7 @@ dependencies {
 	implementation "org.mybatis:mybatis:3.4.5"
 	// lombok
 	implementation 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
 	// devtools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 }
