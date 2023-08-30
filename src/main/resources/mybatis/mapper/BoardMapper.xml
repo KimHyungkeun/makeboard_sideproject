@@ -18,6 +18,16 @@
         LIMIT 1;
     </select>
 
+    <select id="isExistsId" resultType="boolean">
+        SELECT
+        EXISTS (SELECT id FROM baseboardlist WHERE id = #{id})
+    </select>
+
+    <select id="isCorrectPw" resultType="boolean">
+        SELECT
+        EXISTS (SELECT password FROM baseboardlist WHERE id = #{id} AND password = #{password})
+    </select>
+
     <insert id="setBoardInfo">
         INSERT INTO baseboardlist (nickname, password, title, content, update_date)
         VALUES (#{nickName}, #{password}, #{title}, #{content}, now());

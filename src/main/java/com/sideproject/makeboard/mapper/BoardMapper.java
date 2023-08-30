@@ -17,4 +17,8 @@ public interface BoardMapper {
     void putBoardInfo(Long id, String password, String title, String content);
 
     void deleteBoardInfo(Long id, String password);
+
+    boolean isExistsId(Long id);
+
+    boolean isCorrectPw(Long id, String password);
 }

@@ -52,5 +52,13 @@ public class BoardService {
         boardMapper.deleteBoardInfo(id, password);
     }
 
+    public boolean isExistsId (Long id) {
+        return boardMapper.isExistsId(id);
+    }
+
+    public boolean isCorrectPw (Long id, String password) {
+        return boardMapper.isCorrectPw(id, password);
+    }
+
 
 }
