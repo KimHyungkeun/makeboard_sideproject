@@ -32,12 +32,13 @@ public class BoardService {
         return boardInfo;
     }
 
-    public void setBoardInfo (BoardInsertInfo boardInsertInfo) {
+    public Long setBoardInfo (BoardInsertInfo boardInsertInfo) {
         String nickName = boardInsertInfo.getNickname();
         String password = boardInsertInfo.getPassword();
         String title = boardInsertInfo.getTitle();
         String content = boardInsertInfo.getContent();
         boardMapper.setBoardInfo(nickName, password, title, content);
+        return boardMapper.getRecentBoardId();
     }
 
     public void putBoardInfo (BoardUpdateInfo boardUpdateInfo) {

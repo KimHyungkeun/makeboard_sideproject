@@ -63,8 +63,20 @@ public class BoardController {
             return new ResponseEntity<String>("Title is required" , HttpStatus.BAD_REQUEST); //400 Code (ERROR)
         }
 
-        boardService.setBoardInfo(boardInsertInfo);
-        return new ResponseEntity<String>("New post is registered", HttpStatus.CREATED);
+        if (boardInsertInfo.getTitle().length() > 100) {
+            return new ResponseEntity<String>("Title Length over 100", HttpStatus.BAD_REQUEST);
+        }
+
+        if (boardInsertInfo.getNickname().length() > 30) {
+            return new ResponseEntity<String>("Nickname Length over 30", HttpStatus.BAD_REQUEST);
+        }
+
+        if (boardInsertInfo.getContent().length() > 1000) {
+            return new ResponseEntity<String>("Content Length over 1000", HttpStatus.BAD_REQUEST);
+        }
+
+        Long id = boardService.setBoardInfo(boardInsertInfo);
+        return new ResponseEntity<String>("Post id : " + id.toString() + " is registered", HttpStatus.CREATED);
     }
 
     // 게시판 내의 글을 수정
@@ -91,6 +103,10 @@ public class BoardController {
             return new ResponseEntity<String>("Password not correct", HttpStatus.BAD_REQUEST);
         }
 
+        if (boardUpdateInfo.getTitle().length() > 100) {
+            return new ResponseEntity<String>("Title Length over 100", HttpStatus.BAD_REQUEST);
+        }
+
         boardService.putBoardInfo(boardUpdateInfo);
         return new ResponseEntity<String>("Post is updated", HttpStatus.OK);
     }
@@ -109,6 +125,6 @@ public class BoardController {
         }
 
         boardService.deleteBoardInfo(id, password);
-        return new ResponseEntity<String>("Post is deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("Post id : " + id.toString() + " is deleted",HttpStatus.OK);
     }
 }

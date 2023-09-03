@@ -3,10 +3,10 @@
 
 <mapper namespace="com.sideproject.makeboard.mapper.BoardMapper">
 
-    <select id="getBoardInfo" resultType="java.util.HashMap">
+    <select id="getBoardInfo" resultType="com.sideproject.makeboard.dto.BoardInfo">
         SELECT id, title, nickname, update_date
         FROM baseboardlist
-        ORDER BY id
+        ORDER BY update_date DESC
         OFFSET #{offset}
         LIMIT #{listCnt};
     </select>
@@ -32,6 +32,13 @@
         INSERT INTO baseboardlist (nickname, password, title, content, update_date)
         VALUES (#{nickName}, #{password}, #{title}, #{content}, now());
     </insert>
+
+    <select id="getRecentBoardId" resultType="Long">
+        SELECT id
+        FROM baseboardlist
+        ORDER BY id DESC
+        LIMIT 1
+    </select>
 
     <update id="putBoardInfo">
         UPDATE baseboardlist
