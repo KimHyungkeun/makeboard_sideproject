@@ -1,4 +1,4 @@
-package com.sideproject.makeboard;
+package com.sideproject.makeboard.config;
 
 
 import org.apache.ibatis.session.SqlSessionFactory;
