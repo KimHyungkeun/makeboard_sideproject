@@ -8,6 +8,6 @@ import java.util.Date;
 public class BoardInfo {
     private Long id;
     private String title;
-    private String nickName;
+    private String nickname;
     private Date updateDate;
 }
