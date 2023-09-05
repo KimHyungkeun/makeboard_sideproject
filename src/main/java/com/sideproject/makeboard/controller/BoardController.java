@@ -50,7 +50,7 @@ public class BoardController {
 
     // 게시판에 글 생성
     @PostMapping
-    public ResponseEntity<?> setBoardInfo(@RequestBody BoardInsertInfo boardInsertInfo) {
+    public ResponseEntity<String> setBoardInfo(@RequestBody BoardInsertInfo boardInsertInfo) {
 
         if (boardInsertInfo.getNickname() == null || boardInsertInfo.getNickname().isEmpty()) {
             return new ResponseEntity<String>("Nickname is required" , HttpStatus.BAD_REQUEST); //400 Code (ERROR)
@@ -78,8 +78,8 @@ public class BoardController {
 
         Long id = boardService.setBoardInfo(boardInsertInfo);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", id.toString());
-        return new ResponseEntity<JSONObject>(jsonObject, HttpStatus.CREATED);
+        jsonObject.put("id", id);
+        return new ResponseEntity<String>(jsonObject.toString(), HttpStatus.CREATED);
     }
 
     // 게시판 내의 글을 수정
