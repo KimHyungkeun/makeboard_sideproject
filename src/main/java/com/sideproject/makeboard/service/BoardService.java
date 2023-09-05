@@ -37,8 +37,7 @@ public class BoardService {
         String password = boardInsertInfo.getPassword();
         String title = boardInsertInfo.getTitle();
         String content = boardInsertInfo.getContent();
-        boardMapper.setBoardInfo(nickName, password, title, content);
-        return boardMapper.getRecentBoardId();
+        return boardMapper.setBoardInfo(nickName, password, title, content);
     }
 
     public void putBoardInfo (BoardUpdateInfo boardUpdateInfo) {

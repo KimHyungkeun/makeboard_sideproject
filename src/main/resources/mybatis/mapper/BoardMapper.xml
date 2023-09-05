@@ -30,15 +30,8 @@
 
     <insert id="setBoardInfo">
         INSERT INTO baseboardlist (nickname, password, title, content, update_date)
-        VALUES (#{nickName}, #{password}, #{title}, #{content}, now());
+        VALUES (#{nickName}, #{password}, #{title}, #{content}, now()) RETURNING id;
     </insert>
-
-    <select id="getRecentBoardId" resultType="Long">
-        SELECT id
-        FROM baseboardlist
-        ORDER BY id DESC
-        LIMIT 1
-    </select>
 
     <update id="putBoardInfo">
         UPDATE baseboardlist

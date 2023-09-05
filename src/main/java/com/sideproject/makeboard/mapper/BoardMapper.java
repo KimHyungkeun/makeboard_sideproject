@@ -12,9 +12,7 @@ public interface BoardMapper {
     List<BoardInfo> getBoardInfo (Long offset, Long listCnt);
     BoardInfoWithId getBoardInfoWithId (Long id);
 
-    Long getRecentBoardId ();
-
-    void setBoardInfo(String nickName, String password, String title, String content);
+    Long setBoardInfo(String nickName, String password, String title, String content);
 
     void putBoardInfo(Long id, String password, String title, String content);
 
