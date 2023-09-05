@@ -28,10 +28,10 @@
         EXISTS (SELECT password FROM baseboardlist WHERE id = #{id} AND password = #{password})
     </select>
 
-    <insert id="setBoardInfo">
+    <select id="setBoardInfo" resultType="Long">
         INSERT INTO baseboardlist (nickname, password, title, content, update_date)
         VALUES (#{nickName}, #{password}, #{title}, #{content}, now()) RETURNING id;
-    </insert>
+    </select>
 
     <update id="putBoardInfo">
         UPDATE baseboardlist
