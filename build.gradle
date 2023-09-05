@@ -30,8 +30,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	// devtools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	// org json
-	implementation 'org.json:json:20230618'
 }
 
 tasks.named('test') {

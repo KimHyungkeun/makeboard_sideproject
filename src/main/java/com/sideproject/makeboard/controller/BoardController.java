@@ -5,7 +5,6 @@ import com.sideproject.makeboard.dto.BoardInfoWithId;
 import com.sideproject.makeboard.dto.BoardInsertInfo;
 import com.sideproject.makeboard.dto.BoardUpdateInfo;
 import com.sideproject.makeboard.service.BoardService;
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -13,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -77,9 +78,9 @@ public class BoardController {
         }
 
         Long id = boardService.setBoardInfo(boardInsertInfo);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", id);
-        return new ResponseEntity<JSONObject>(jsonObject, HttpStatus.CREATED);
+        Map<String, Long> result = new HashMap<>();
+        result.put("id", id);
+        return new ResponseEntity<Map<String, Long>>(result, HttpStatus.CREATED);
     }
 
     // 게시판 내의 글을 수정
