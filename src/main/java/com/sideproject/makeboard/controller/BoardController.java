@@ -5,6 +5,7 @@ import com.sideproject.makeboard.dto.BoardInfoWithId;
 import com.sideproject.makeboard.dto.BoardInsertInfo;
 import com.sideproject.makeboard.dto.BoardUpdateInfo;
 import com.sideproject.makeboard.service.BoardService;
+import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -49,7 +50,7 @@ public class BoardController {
 
     // 게시판에 글 생성
     @PostMapping
-    public ResponseEntity<String> setBoardInfo(@RequestBody BoardInsertInfo boardInsertInfo) {
+    public ResponseEntity<?> setBoardInfo(@RequestBody BoardInsertInfo boardInsertInfo) {
 
         if (boardInsertInfo.getNickname() == null || boardInsertInfo.getNickname().isEmpty()) {
             return new ResponseEntity<String>("Nickname is required" , HttpStatus.BAD_REQUEST); //400 Code (ERROR)
@@ -76,7 +77,9 @@ public class BoardController {
         }
 
         Long id = boardService.setBoardInfo(boardInsertInfo);
-        return new ResponseEntity<String>("Post id : " + id.toString() + " is registered", HttpStatus.CREATED);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("id", id.toString());
+        return new ResponseEntity<JSONObject>(jsonObject, HttpStatus.CREATED);
     }
 
     // 게시판 내의 글을 수정
