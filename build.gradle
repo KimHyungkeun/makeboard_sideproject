@@ -30,6 +30,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	// devtools
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	// swagger-ui
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.14'
+
 }
 
 tasks.named('test') {
