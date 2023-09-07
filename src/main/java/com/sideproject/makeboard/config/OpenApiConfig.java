@@ -12,9 +12,9 @@ public class OpenApiConfig {
     @Bean
     public OpenAPI openAPI(@Value("${springdoc.version}") String springdocVersion) {
         Info info = new Info()
-                .title("타이틀 입력")
+                .title("게시판 API 목록")
                 .version(springdocVersion)
-                .description("API에 대한 설명 부분");
+                .description("게시판 조회, 등록, 수정, 생성의 API를 모은 Swagger");
 
         return new OpenAPI()
                 .components(new Components())
