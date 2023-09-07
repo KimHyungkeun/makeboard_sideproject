@@ -16,6 +16,8 @@ public class WebConfig implements WebMvcConfigurer {
                         "https://*.roco.moe:*",
                         "http://*.roco.moe",
                         "https://*.roco.moe",
+                        "http://mezvopydur.us16.qoddiapp.com:*",
+                        "https://mezvopydur.us16.qoddiapp.com:*",
                         "http://mezvopydur.us16.qoddiapp.com",
                         "https://mezvopydur.us16.qoddiapp.com",
                         "http://localhost:*",
