@@ -3,7 +3,7 @@ spring:
   datasource :
     hikari :
       maximum-pool-size : 5
-    jdbc-url : jdbc:postgresql://batyr.db.elephantsql.com:5432/${PSQL_USERNAME}?currentSchema=makeboard_schema
+    jdbc-url : jdbc:postgresql://${PSQL_URL}:${PSQL_PORT}/${PSQL_DBNAME}?currentSchema=makeboard_schema
     username : ${PSQL_USERNAME}
     password : ${PSQL_PASSWORD}
     driver-class-name : org.postgresql.Driver
