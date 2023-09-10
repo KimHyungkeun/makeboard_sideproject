@@ -1,10 +1,7 @@
 package com.sideproject.makeboard.service;
 
 
-import com.sideproject.makeboard.dto.BoardInfo;
-import com.sideproject.makeboard.dto.BoardInfoWithId;
-import com.sideproject.makeboard.dto.BoardInsertInfo;
-import com.sideproject.makeboard.dto.BoardUpdateInfo;
+import com.sideproject.makeboard.dto.*;
 import com.sideproject.makeboard.mapper.BoardMapper;
 
 
@@ -59,6 +56,8 @@ public class BoardService {
     public boolean isCorrectPw (Long id, String password) {
         return boardMapper.isCorrectPw(id, password);
     }
+
+
 
 
 }

@@ -1,9 +1,6 @@
 package com.sideproject.makeboard.controller;
 
-import com.sideproject.makeboard.dto.BoardInfo;
-import com.sideproject.makeboard.dto.BoardInfoWithId;
-import com.sideproject.makeboard.dto.BoardInsertInfo;
-import com.sideproject.makeboard.dto.BoardUpdateInfo;
+import com.sideproject.makeboard.dto.*;
 import com.sideproject.makeboard.service.BoardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -163,4 +160,5 @@ public class BoardController {
         boardService.deleteBoardInfo(id, password);
         return new ResponseEntity<String>("Post id : " + id.toString() + " is deleted",HttpStatus.OK);
     }
+
 }
