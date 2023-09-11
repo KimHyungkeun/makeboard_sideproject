@@ -9,6 +9,11 @@ spring:
     driver-class-name : org.postgresql.Driver
     mapper-locations: classpath:/mybatis/mapper/BoardMapper.xml
 
+  # multipart 설정
+  servlet:
+    multipart.max-file-size: 20MB
+    max-request-size: 20MB
+
 mybatis:
   config-location: classpath:mybatis-config.xml
   configuration:
@@ -30,3 +35,16 @@ springdoc:
     disabled: true
   default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
+
+cloud:
+  aws:
+    credentials:
+      accessKey: ${AWS_ACCESS_KEY_ID}       # AWS IAM AccessKey 적기
+      secretKey: ${AWS_SECRET_ACCESS_KEY}   # AWS IAM SecretKey 적기
+    s3:
+      bucket: ${BUCKET_NAME}
+      dir: ${DIR_NAME}
+    region:
+      static: ap-northeast-2
+    stack:
+      auto: false
