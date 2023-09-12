@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@OpenAPIDefinition(servers = {@Server(url = "${server.servlet.context-path}", description = "Default Server URL")})
+@OpenAPIDefinition(servers = {@Server(url = "${WEB_SERVER_URL}", description = "Default Server URL")})
 @Tag(name = "게시판 API 목록")
 @Slf4j
 @RestController
