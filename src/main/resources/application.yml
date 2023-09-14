@@ -2,7 +2,7 @@
 spring:
   datasource :
     hikari :
-      maximum-pool-size : 5
+      maximum-pool-size : 1
     jdbc-url : jdbc:postgresql://${PSQL_URL}:${PSQL_PORT}/${PSQL_DBNAME}?currentSchema=makeboard_schema
     username : ${PSQL_USERNAME}
     password : ${PSQL_PASSWORD}
