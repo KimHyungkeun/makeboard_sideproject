@@ -164,4 +164,52 @@ public class BoardController {
         return new ResponseEntity<String>("Post id : " + id.toString() + " is deleted",HttpStatus.OK);
     }
 
+    @GetMapping("/totalCount")
+    @Operation(summary = "게시글 전체 갯수 불러오기")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "게시글 전체 갯수 불러오기 성공")})
+    public ResponseEntity<?> getBoardTotalCount() {
+        return null;
+    }
+
+    @GetMapping("/replyCount")
+    @Operation(summary = "게시글 별 댓글 개수 표시")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "게시글 전체 갯수 불러오기 성공")})
+    public ResponseEntity<?> getBoardReplyCount () {
+        return null;
+    }
+
+    @GetMapping("/reply")
+    @Operation(summary = "해당 게시글에 대한 댓글 전체 조회하기")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "게시글 전체 갯수 불러오기 성공")})
+    public ResponseEntity<?> getBoardReplyWithPostId (@RequestParam(value = "postId")Long postId) {
+        return null;
+    }
+
+    @PostMapping("/reply")
+    @Operation(summary = "댓글 생성 (+대댓글 생성)")
+    @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "댓글 생성 성공"),
+            @ApiResponse(responseCode = "400", description = "댓글 ID나 닉네임 미입력"),
+            @ApiResponse(responseCode = "404", description = "댓글 ID나 부모댓글 ID가 없음")})
+    public ResponseEntity<?> setBoardReply (@RequestBody ReplyInsertInfo replyInsertInfo) {
+        return null;
+    }
+
+    @PutMapping("/reply")
+    @Operation(summary = "댓글 내용 수정")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "댓글 수정 완료"),
+            @ApiResponse(responseCode = "400", description = "댓글 ID나 암호를 미입력. 암호를 틀렸을 때도 발생"),
+            @ApiResponse(responseCode = "404", description = "게시글 ID가 미존재")})
+    public ResponseEntity<?> putBoardReply (@RequestBody ReplyUpdateInfo replyUpdateInfo) {
+        return null;
+    }
+
+    @DeleteMapping("/reply")
+    @Operation(summary = "댓글 삭제")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "댓글 삭제 완료"),
+            @ApiResponse(responseCode = "400", description = "댓글 ID나 암호를 미입력. 암호를 틀렸을때도 발생"),
+            @ApiResponse(responseCode = "404", description = "댓글 ID가 미존재")})
+    public ResponseEntity<?> deleteBoardReply (@RequestParam(value = "replyId")Long replyId, @RequestParam(value="password")String password) {
+        return null;
+    }
+
 }
