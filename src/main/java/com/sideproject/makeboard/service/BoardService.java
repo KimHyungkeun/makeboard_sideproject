@@ -17,6 +17,10 @@ public class BoardService {
         this.boardMapper = boardMapper;
     }
 
+    public Long getBoardTotalCount () {
+        return boardMapper.getBoardTotalCount();
+    }
+
     public List<BoardInfo> getBoardInfo (Long page, Long listCnt) {
 
         long offset = (page * listCnt) - listCnt;

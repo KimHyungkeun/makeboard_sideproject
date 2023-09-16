@@ -9,6 +9,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface BoardMapper {
+
+    Long getBoardTotalCount ();
     List<BoardInfo> getBoardInfo (Long offset, Long listCnt);
     BoardInfoWithId getBoardInfoWithId (Long id);
 

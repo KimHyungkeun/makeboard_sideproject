@@ -15,7 +15,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @OpenAPIDefinition(servers = {@Server(url = "${WEB_SERVER_URL}", description = "Default Server URL")})
@@ -38,13 +37,17 @@ public class BoardController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "게시판 내용 모두 불러오기"),
     })
-    public @ResponseBody List<BoardInfo> getBoardInfo(
+    public @ResponseBody ResponseEntity<BoardInfoAll> getBoardInfo(
             @RequestParam(value = "page", required = false)Long page,
             @RequestParam(value = "listCnt", required = false) Long listCnt) {
         if (page == null) { page = (long)1; }
         if (listCnt == null) { listCnt = (long)10; }
 
-        return boardService.getBoardInfo(page, listCnt);
+        BoardInfoAll boardInfoAll = new BoardInfoAll();
+        boardInfoAll.setTotalBoardCount(boardService.getBoardTotalCount());
+        boardInfoAll.setBoardInfo(boardService.getBoardInfo(page, listCnt));
+
+        return new ResponseEntity<BoardInfoAll>(boardInfoAll, HttpStatus.OK);
     }
 
     // 특정 게시판 불러오기
@@ -164,12 +167,6 @@ public class BoardController {
         return new ResponseEntity<String>("Post id : " + id.toString() + " is deleted",HttpStatus.OK);
     }
 
-    @GetMapping("/totalCount")
-    @Operation(summary = "게시글 전체 갯수 불러오기")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "게시글 전체 갯수 불러오기 성공")})
-    public ResponseEntity<?> getBoardTotalCount() {
-        return null;
-    }
 
     @GetMapping("/replyCount")
     @Operation(summary = "게시글 별 댓글 개수 표시")

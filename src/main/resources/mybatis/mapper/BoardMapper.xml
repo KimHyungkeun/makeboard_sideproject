@@ -3,6 +3,12 @@
 
 <mapper namespace="com.sideproject.makeboard.mapper.BoardMapper">
 
+
+    <select id="getBoardTotalCount" resultType="Long">
+        SELECT count(id)
+        FROM baseboardlist ;
+    </select>
+
     <select id="getBoardInfo" resultType="com.sideproject.makeboard.dto.BoardInfo">
         SELECT id, title, nickname, update_date
         FROM baseboardlist
