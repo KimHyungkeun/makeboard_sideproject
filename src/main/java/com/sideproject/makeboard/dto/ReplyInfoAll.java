@@ -9,7 +9,7 @@ public class ReplyInfoAll {
     private Long postId;
     private Long replyId;
     private Long parentId;
-    private boolean isParent;
+    private boolean parentTrueFalse;
     private String content;
     private String nickname;
     private Date updateDate;
