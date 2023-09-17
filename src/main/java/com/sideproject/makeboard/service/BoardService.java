@@ -33,6 +33,11 @@ public class BoardService {
         return boardInfo;
     }
 
+    public List<ReplyInfoAll> getReplyInfoAll (Long postId) {
+        ReplyInfoAll replyInfoAll = new ReplyInfoAll();
+        return boardMapper.getReplyInfoAll(postId);
+    }
+
     public Long setBoardInfo (BoardInsertInfo boardInsertInfo) {
         String nickName = boardInsertInfo.getNickname();
         String password = boardInsertInfo.getPassword();
@@ -53,9 +58,26 @@ public class BoardService {
         boardMapper.deleteBoardInfo(id, password);
     }
 
+    public Long setBoardReply (ReplyInsertInfo replyInsertInfo) {
+        Long postId = replyInsertInfo.getPostId();
+        Long parentId;
+        if (replyInsertInfo.getParentId() == null) {
+            parentId = null;
+        } else {
+            parentId = replyInsertInfo.getParentId();
+        }
+        String content = replyInsertInfo.getContent();
+        String nickname = replyInsertInfo.getNickname();
+        String password = replyInsertInfo.getPassword();
+
+        return boardMapper.setBoardReplyInfo(postId, parentId, content, nickname, password);
+    }
+
     public boolean isExistsId (Long id) {
         return boardMapper.isExistsId(id);
     }
+
+    public boolean isExistsReplyParentId (Long parentId) {return boardMapper.isExistsReplyParentId(parentId);}
 
     public boolean isCorrectPw (Long id, String password) {
         return boardMapper.isCorrectPw(id, password);

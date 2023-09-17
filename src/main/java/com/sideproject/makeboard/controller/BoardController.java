@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @OpenAPIDefinition(servers = {@Server(url = "${WEB_SERVER_URL}", description = "Default Server URL")})
@@ -168,30 +169,62 @@ public class BoardController {
     }
 
 
-    @GetMapping("/replyCount")
+    @GetMapping("replyCount")
     @Operation(summary = "게시글 별 댓글 개수 표시")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "게시글 전체 갯수 불러오기 성공")})
     public ResponseEntity<?> getBoardReplyCount () {
         return null;
     }
 
-    @GetMapping("/reply")
+    @GetMapping("reply")
     @Operation(summary = "해당 게시글에 대한 댓글 전체 조회하기")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "게시글 전체 갯수 불러오기 성공")})
-    public ResponseEntity<?> getBoardReplyWithPostId (@RequestParam(value = "postId")Long postId) {
-        return null;
+    @ApiResponses(value =
+            {@ApiResponse(responseCode = "200", description = "게시글 전체 갯수 불러오기 성공"),
+            @ApiResponse(responseCode = "404", description = "게시글 ID 미존재")})
+    public ResponseEntity<?> getBoardReplyWithPostId (@RequestParam(value = "postId") Long postId) {
+
+        List<ReplyInfoAll> replyInfoAlls = boardService.getReplyInfoAll(postId);
+        if (!boardService.isExistsId(postId)) {
+            return new ResponseEntity<String>("PostId : " + postId.toString() + " does not exist", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<ReplyInfoAll>>(replyInfoAlls, HttpStatus.OK);
     }
 
-    @PostMapping("/reply")
+    @PostMapping("reply")
     @Operation(summary = "댓글 생성 (+대댓글 생성)")
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "댓글 생성 성공"),
-            @ApiResponse(responseCode = "400", description = "댓글 ID나 닉네임 미입력"),
-            @ApiResponse(responseCode = "404", description = "댓글 ID나 부모댓글 ID가 없음")})
+            @ApiResponse(responseCode = "400", description = "게시글 ID 미입력, 닉네임 미입력, 패스워드 미입력"),
+            @ApiResponse(responseCode = "404", description = "게시글 ID나 부모댓글 ID가 없음")})
     public ResponseEntity<?> setBoardReply (@RequestBody ReplyInsertInfo replyInsertInfo) {
-        return null;
+        if (replyInsertInfo.getPostId() == null) {
+            return new ResponseEntity<String>("PostId is required", HttpStatus.BAD_REQUEST);
+        }
+
+        if (replyInsertInfo.getNickname() == null || replyInsertInfo.getNickname().isEmpty()) {
+            return new ResponseEntity<String>("Nickname is required", HttpStatus.BAD_REQUEST);
+        }
+
+        if (replyInsertInfo.getPassword() == null || replyInsertInfo.getPassword().isEmpty()) {
+            return new ResponseEntity<String>("Password is required", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!boardService.isExistsId(replyInsertInfo.getPostId())) {
+            return new ResponseEntity<String>("PostId : " + replyInsertInfo.getPostId().toString() + " does not exist", HttpStatus.NOT_FOUND);
+        }
+
+        if (replyInsertInfo.getParentId() != null && !boardService.isExistsReplyParentId(replyInsertInfo.getParentId())) {
+            return new ResponseEntity<String>("Reply ParentId : " + replyInsertInfo.getParentId().toString() + " does not exist", HttpStatus.NOT_FOUND);
+        }
+
+        Long replyId = boardService.setBoardReply(replyInsertInfo);
+        Map<String, Long> result = new HashMap<>();
+        result.put("postId", replyInsertInfo.getPostId());
+        result.put("replyId", replyId);
+        result.put("parentId", replyInsertInfo.getParentId());
+        return new ResponseEntity<Map<String, Long>>(result, HttpStatus.CREATED);
     }
 
-    @PutMapping("/reply")
+    @PutMapping("reply")
     @Operation(summary = "댓글 내용 수정")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "댓글 수정 완료"),
             @ApiResponse(responseCode = "400", description = "댓글 ID나 암호를 미입력. 암호를 틀렸을 때도 발생"),
@@ -200,7 +233,7 @@ public class BoardController {
         return null;
     }
 
-    @DeleteMapping("/reply")
+    @DeleteMapping("reply")
     @Operation(summary = "댓글 삭제")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "댓글 삭제 완료"),
             @ApiResponse(responseCode = "400", description = "댓글 ID나 암호를 미입력. 암호를 틀렸을때도 발생"),

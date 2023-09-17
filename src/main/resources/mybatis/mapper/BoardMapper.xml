@@ -24,9 +24,20 @@
         LIMIT 1;
     </select>
 
+    <select id="getReplyInfoAll" resultType="com.sideproject.makeboard.dto.ReplyInfoAll">
+        SELECT reply_id, post_id, parent_id, content, nickname, password, update_date
+        FROM baseboardreplylist
+        WHERE post_id = #{postId}
+    </select>
+
     <select id="isExistsId" resultType="boolean">
         SELECT
         EXISTS (SELECT id FROM baseboardlist WHERE id = #{id})
+    </select>
+
+    <select id="isExistsReplyParentId" resultType="boolean">
+        SELECT
+        EXISTS (SELECT parent_id FROM baseboardReplylist WHERE parent_id = #{parentId})
     </select>
 
     <select id="isCorrectPw" resultType="boolean">
@@ -37,6 +48,17 @@
     <select id="setBoardInfo" resultType="Long">
         INSERT INTO baseboardlist (nickname, password, title, content, update_date)
         VALUES (#{nickName}, #{password}, #{title}, #{content}, now()) RETURNING id;
+    </select>
+
+    <select id="setBoardReplyInfo" resultType="Long">
+        <if test = "parentId != null">
+            INSERT INTO baseboardreplylist (post_id, parent_id, content, nickname, password, update_date)
+            VALUES (#{postId}, #{parentId}, #{content}, #{nickname}, #{password}, now()) RETURNING reply_id;
+        </if>
+        <if test = "parentId == null">
+            INSERT INTO baseboardreplylist (post_id, content, nickname, password, update_date)
+            VALUES (#{postId}, #{content}, #{nickname}, #{password}, now()) RETURNING reply_id;
+        </if>
     </select>
 
     <update id="putBoardInfo">
@@ -54,9 +76,6 @@
         DELETE FROM baseboardlist
         WHERE id = #{id} AND password = #{password}
     </delete>
-
-
-
 
 
 </mapper>
