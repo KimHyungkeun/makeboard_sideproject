@@ -25,9 +25,10 @@
     </select>
 
     <select id="getReplyInfoAll" resultType="com.sideproject.makeboard.dto.ReplyInfoAll">
-        SELECT reply_id, post_id, parent_id, content, nickname, password, update_date
+        SELECT reply_id, post_id, parent_id, is_parent, content, nickname, password, update_date
         FROM baseboardreplylist
         WHERE post_id = #{postId}
+        ORDER BY parent_id, reply_id;
     </select>
 
     <select id="isExistsId" resultType="boolean">
@@ -52,12 +53,12 @@
 
     <select id="setBoardReplyInfo" resultType="Long">
         <if test = "parentId != null">
-            INSERT INTO baseboardreplylist (post_id, parent_id, content, nickname, password, update_date)
-            VALUES (#{postId}, #{parentId}, #{content}, #{nickname}, #{password}, now()) RETURNING reply_id;
+            INSERT INTO baseboardreplylist (post_id, parent_id, is_parent,content, nickname, password, update_date)
+            VALUES (#{postId}, #{parentId}, false, #{content}, #{nickname}, #{password}, now()) RETURNING reply_id;
         </if>
         <if test = "parentId == null">
-            INSERT INTO baseboardreplylist (post_id, content, nickname, password, update_date)
-            VALUES (#{postId}, #{content}, #{nickname}, #{password}, now()) RETURNING reply_id;
+            INSERT INTO baseboardreplylist (post_id, is_parent, content, nickname, password, update_date)
+            VALUES (#{postId}, true, #{content}, #{nickname}, #{password}, now()) RETURNING reply_id;
         </if>
     </select>
 
