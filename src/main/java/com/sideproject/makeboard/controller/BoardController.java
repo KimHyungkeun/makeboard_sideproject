@@ -220,7 +220,11 @@ public class BoardController {
         Map<String, Long> result = new HashMap<>();
         result.put("postId", replyInsertInfo.getPostId());
         result.put("replyId", replyId);
-        result.put("parentId", replyInsertInfo.getParentId());
+        if (replyInsertInfo.getParentId() == null) {
+            result.put("parentId", replyId);
+        } else {
+            result.put("parentId", replyInsertInfo.getParentId());
+        }
         return new ResponseEntity<Map<String, Long>>(result, HttpStatus.CREATED);
     }
 
