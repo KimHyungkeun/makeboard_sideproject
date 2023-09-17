@@ -25,7 +25,7 @@
     </select>
 
     <select id="getReplyInfoAll" resultType="com.sideproject.makeboard.dto.ReplyInfoAll">
-        SELECT reply_id, post_id, parent_id, is_parent, content, nickname, password, update_date
+        SELECT reply_id, post_id, parent_id, is_parent, content, nickname, update_date
         FROM baseboardreplylist
         WHERE post_id = #{postId}
         ORDER BY parent_id, reply_id;
