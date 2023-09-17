@@ -77,7 +77,7 @@ public class BoardService {
         return boardMapper.isExistsId(id);
     }
 
-    public boolean isExistsReplyParentId (Long parentId) {return boardMapper.isExistsReplyParentId(parentId);}
+    public boolean isExistsReplyId (Long parentId) {return boardMapper.isExistsReplyId(parentId);}
 
     public boolean isCorrectPw (Long id, String password) {
         return boardMapper.isCorrectPw(id, password);

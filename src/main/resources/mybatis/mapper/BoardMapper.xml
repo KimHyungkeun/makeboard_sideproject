@@ -35,9 +35,9 @@
         EXISTS (SELECT id FROM baseboardlist WHERE id = #{id})
     </select>
 
-    <select id="isExistsReplyParentId" resultType="boolean">
+    <select id="isExistsReplyId" resultType="boolean">
         SELECT
-        EXISTS (SELECT parent_id FROM baseboardReplylist WHERE parent_id = #{parentId})
+        EXISTS (SELECT reply_id FROM baseboardReplylist WHERE reply_id = #{parentId})
     </select>
 
     <select id="isCorrectPw" resultType="boolean">

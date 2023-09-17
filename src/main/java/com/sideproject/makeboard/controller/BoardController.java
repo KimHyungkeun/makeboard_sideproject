@@ -212,7 +212,7 @@ public class BoardController {
             return new ResponseEntity<String>("PostId : " + replyInsertInfo.getPostId().toString() + " does not exist", HttpStatus.NOT_FOUND);
         }
 
-        if (replyInsertInfo.getParentId() != null && !boardService.isExistsReplyParentId(replyInsertInfo.getParentId())) {
+        if (replyInsertInfo.getParentId() != null && !boardService.isExistsReplyId(replyInsertInfo.getParentId())) {
             return new ResponseEntity<String>("Reply ParentId : " + replyInsertInfo.getParentId().toString() + " does not exist", HttpStatus.NOT_FOUND);
         }
 

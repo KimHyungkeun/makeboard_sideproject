@@ -27,7 +27,7 @@ public interface BoardMapper {
 
     boolean isExistsId(Long id);
 
-    boolean isExistsReplyParentId(Long parentId);
+    boolean isExistsReplyId(Long parentId);
 
     boolean isCorrectPw(Long id, String password);
 }
