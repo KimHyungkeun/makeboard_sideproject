@@ -109,7 +109,7 @@
             WHERE reply_id = #{replyId} AND password = #{password}
         </if>
         DELETE FROM baseboardreplylist
-        WHERE (SELECT count(reply_id) FROM baseboardreplylist WHERE parent_true_false = false) = 0
+        WHERE post_id = #{postId} AND (SELECT count(reply_id) FROM baseboardreplylist WHERE parent_true_false is false) = 0
     </delete>
 
 

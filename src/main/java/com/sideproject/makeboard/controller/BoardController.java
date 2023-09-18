@@ -258,12 +258,17 @@ public class BoardController {
     @DeleteMapping("reply")
     @Operation(summary = "댓글 삭제")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "댓글 삭제 완료"),
-            @ApiResponse(responseCode = "400", description = "댓글 ID나 암호를 미입력. 암호를 틀렸을때도 발생"),
-            @ApiResponse(responseCode = "404", description = "댓글 ID가 미존재")})
+            @ApiResponse(responseCode = "400", description = "댓글 ID, 게시글 ID, 암호를 미입력. 암호를 틀렸을때도 발생"),
+            @ApiResponse(responseCode = "404", description = "댓글 ID가 미존재 또는 댓글 ID가 미존재")})
     public ResponseEntity<String> deleteBoardReply (@RequestParam(value = "replyId")Long replyId,
+                                                    @RequestParam(value = "postId")Long postId,
                                                @RequestParam(value="password")String password) {
         if (!boardService.isExistsReplyId(replyId)) {
-            return new ResponseEntity<String>("ReplyId: " + replyId.toString() + " does not exist",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<String>("ReplyId: " + replyId.toString() + " does not exist", HttpStatus.NOT_FOUND);
+        }
+
+        if (!boardService.isExistsId(postId)) {
+            return new ResponseEntity<String>("PostId: " + postId.toString() + " does not exist", HttpStatus.NOT_FOUND);
         }
 
         if (!boardService.isCorrectReplyPw(replyId, password)) {
@@ -271,7 +276,7 @@ public class BoardController {
         }
 
         Boolean isParent = boardService.isParentReply(replyId);
-        boardService.deleteBoardReplyInfo(replyId, password, isParent);
+        boardService.deleteBoardReplyInfo(replyId, postId, password, isParent);
         return new ResponseEntity<String>("Reply is deleted", HttpStatus.OK);
     }
 
