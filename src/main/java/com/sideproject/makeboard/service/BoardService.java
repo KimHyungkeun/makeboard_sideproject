@@ -65,6 +65,10 @@ public class BoardService {
         boardMapper.deleteBoardInfo(id, password);
     }
 
+    public void deleteBoardReplyInfo (Long replyId, String password, Boolean isParent) {
+        boardMapper.deleteBoardReplyInfo(replyId, password, isParent);
+    }
+
     public Long setBoardReply (ReplyInsertInfo replyInsertInfo) {
         Long postId = replyInsertInfo.getPostId();
         Long parentId;
@@ -94,7 +98,7 @@ public class BoardService {
         return boardMapper.isCorrectReplyPw(replyId, password);
     }
 
-
-
-
+    public boolean isParentReply (Long replyId) {
+        return boardMapper.isParentReply(replyId);
+    }
 }

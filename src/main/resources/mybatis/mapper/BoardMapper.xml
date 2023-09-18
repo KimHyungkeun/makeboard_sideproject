@@ -51,6 +51,10 @@
         EXISTS (SELECT password FROM baseboardreplylist WHERE reply_id = #{replyId} AND password = #{password})
     </select>
 
+    <select id="isParentReply" resultType="boolean">
+       SELECT parent_true_false FROM baseboardreplylist WHERE reply_id = #{replyId}
+    </select>
+
     <select id="setBoardInfo" resultType="Long">
         INSERT INTO baseboardlist (nickname, password, title, content, update_date)
         VALUES (#{nickName}, #{password}, #{title}, #{content}, now()) RETURNING id;
@@ -91,6 +95,21 @@
     <delete id="deleteBoardInfo">
         DELETE FROM baseboardlist
         WHERE id = #{id} AND password = #{password}
+    </delete>
+
+    <delete id="deleteBoardReplyInfo">
+        <if test = "isParent">
+            UPDATE baseboardreplylist
+            SET
+                content = null
+            WHERE reply_id = #{replyId} AND password = #{password}
+        </if>
+        <if test = "!isParent">
+            DELETE FROM baseboardreplylist
+            WHERE reply_id = #{replyId} AND password = #{password}
+        </if>
+        DELETE FROM baseboardreplylist
+        WHERE (SELECT count(reply_id) FROM baseboardreplylist WHERE parent_true_false = false) = 0
     </delete>
 
 
