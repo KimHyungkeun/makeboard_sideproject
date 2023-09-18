@@ -82,7 +82,7 @@
         UPDATE baseboardreplylist
         SET
             password = #{password},
-            content = #{content}
+            content = #{content},
             update_date = now()
         WHERE
             reply_id = #{replyId}
