@@ -46,6 +46,11 @@
         EXISTS (SELECT password FROM baseboardlist WHERE id = #{id} AND password = #{password})
     </select>
 
+    <select id="isCorrectReplyPw" resultType="boolean">
+        SELECT
+        EXISTS (SELECT password FROM baseboardreplylist WHERE reply_id = #{replyId} AND password = #{password})
+    </select>
+
     <select id="setBoardInfo" resultType="Long">
         INSERT INTO baseboardlist (nickname, password, title, content, update_date)
         VALUES (#{nickName}, #{password}, #{title}, #{content}, now()) RETURNING id;
@@ -71,6 +76,16 @@
             update_date = now()
         WHERE
             id = #{id}
+    </update>
+
+    <update id="putBoardReplyInfo">
+        UPDATE baseboardreplylist
+        SET
+            password = #{password},
+            content = #{content}
+            update_date = now()
+        WHERE
+            reply_id = #{replyId}
     </update>
 
     <delete id="deleteBoardInfo">

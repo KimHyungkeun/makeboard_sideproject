@@ -21,6 +21,8 @@ public interface BoardMapper {
 
     void putBoardInfo(Long id, String password, String title, String content);
 
+    void putBoardReplyInfo(Long replyId, String content, String password);
+
     void deleteBoardInfo(Long id, String password);
 
     Long setBoardReplyInfo(Long postId, Long parentId, String content, String nickname, String password);
@@ -30,4 +32,6 @@ public interface BoardMapper {
     boolean isExistsReplyId(Long parentId);
 
     boolean isCorrectPw(Long id, String password);
+
+    boolean isCorrectReplyPw(Long replyId, String password);
 }

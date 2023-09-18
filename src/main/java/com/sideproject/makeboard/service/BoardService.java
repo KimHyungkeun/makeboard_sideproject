@@ -54,6 +54,13 @@ public class BoardService {
         boardMapper.putBoardInfo(id, password, title, content);
     }
 
+    public void putBoardReplyInfo (ReplyUpdateInfo replyUpdateInfo) {
+        Long replyId = replyUpdateInfo.getReplyId();
+        String content = replyUpdateInfo.getContent();
+        String password = replyUpdateInfo.getPassword();
+        boardMapper.putBoardReplyInfo(replyId, content, password);
+    }
+
     public void deleteBoardInfo (Long id, String password) {
         boardMapper.deleteBoardInfo(id, password);
     }
@@ -81,6 +88,10 @@ public class BoardService {
 
     public boolean isCorrectPw (Long id, String password) {
         return boardMapper.isCorrectPw(id, password);
+    }
+
+    public boolean isCorrectReplyPw (Long replyId, String password) {
+        return boardMapper.isCorrectReplyPw(replyId, password);
     }
 
 

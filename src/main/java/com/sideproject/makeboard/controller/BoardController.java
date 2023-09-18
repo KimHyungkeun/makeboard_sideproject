@@ -233,8 +233,26 @@ public class BoardController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "댓글 수정 완료"),
             @ApiResponse(responseCode = "400", description = "댓글 ID나 암호를 미입력. 암호를 틀렸을 때도 발생"),
             @ApiResponse(responseCode = "404", description = "게시글 ID가 미존재")})
-    public ResponseEntity<?> putBoardReply (@RequestBody ReplyUpdateInfo replyUpdateInfo) {
-        return null;
+    public ResponseEntity<String> putBoardReply (@RequestBody ReplyUpdateInfo replyUpdateInfo) {
+
+        if (replyUpdateInfo.getReplyId() == null) {
+            return new ResponseEntity<String>("ReplyId is required", HttpStatus.BAD_REQUEST);
+        }
+
+        if (replyUpdateInfo.getPassword() == null || replyUpdateInfo.getPassword().isEmpty()) {
+            return new ResponseEntity<String>("Password is required", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!boardService.isCorrectReplyPw(replyUpdateInfo.getReplyId(), replyUpdateInfo.getPassword())) {
+            return new ResponseEntity<String>("Password not correct", HttpStatus.BAD_REQUEST);
+        }
+
+        if (replyUpdateInfo.getPostId() == null || !boardService.isExistsId(replyUpdateInfo.getPostId())) {
+            return new ResponseEntity<String>("PostId does not exist", HttpStatus.NOT_FOUND);
+        }
+
+        boardService.putBoardReplyInfo(replyUpdateInfo);
+        return new ResponseEntity<String>("Reply is updated", HttpStatus.OK);
     }
 
     @DeleteMapping("reply")
