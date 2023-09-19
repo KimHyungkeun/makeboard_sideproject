@@ -276,6 +276,7 @@ public class BoardController {
             return new ResponseEntity<String>("Password not correct", HttpStatus.BAD_REQUEST);
         }
 
+
         Boolean isParent = boardService.isParentReply(replyId);
         boardService.deleteBoardReplyInfo(replyId, postId, parentId, password, isParent);
         return new ResponseEntity<String>("Reply is deleted", HttpStatus.OK);
