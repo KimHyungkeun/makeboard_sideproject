@@ -10,4 +10,5 @@ public class BoardInfo {
     private String title;
     private String nickname;
     private Date updateDate;
+    private Long replyCount;
 }
