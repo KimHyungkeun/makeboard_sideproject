@@ -65,8 +65,8 @@ public class BoardService {
         boardMapper.deleteBoardInfo(id, password);
     }
 
-    public void deleteBoardReplyInfo (Long replyId, Long postId, String password, Boolean isParent) {
-        boardMapper.deleteBoardReplyInfo(replyId, postId, password, isParent);
+    public void deleteBoardReplyInfo (Long replyId, Long postId, Long parentId, String password, Boolean isParent) {
+        boardMapper.deleteBoardReplyInfo(replyId, postId, parentId, password, isParent);
     }
 
     public Long setBoardReply (ReplyInsertInfo replyInsertInfo) {

@@ -25,7 +25,7 @@ public interface BoardMapper {
 
     void deleteBoardInfo(Long id, String password);
 
-    void deleteBoardReplyInfo(Long replyId, Long postId, String password, Boolean isParent);
+    void deleteBoardReplyInfo(Long replyId, Long postId, Long parentId, String password, Boolean isParent);
 
     Long setBoardReplyInfo(Long postId, Long parentId, String content, String nickname, String password);
 

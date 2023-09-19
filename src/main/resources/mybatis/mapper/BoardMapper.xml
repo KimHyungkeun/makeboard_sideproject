@@ -108,6 +108,10 @@
             DELETE FROM baseboardreplylist
             WHERE reply_id = #{replyId} AND password = #{password};
         </if >
+        DELETE FROM baseboardreplylist
+        WHERE parent_id = #{parentId}
+        AND content is null
+        AND (SELECT count(parent_id) FROM baseboardreplylist WHERE parent_true_false is false AND parent_id = #{parentId}) = 0
     </delete>
 
 

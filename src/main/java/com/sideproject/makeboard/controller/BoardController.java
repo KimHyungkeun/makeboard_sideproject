@@ -262,6 +262,7 @@ public class BoardController {
             @ApiResponse(responseCode = "404", description = "댓글 ID가 미존재 또는 댓글 ID가 미존재")})
     public ResponseEntity<String> deleteBoardReply (@RequestParam(value = "replyId")Long replyId,
                                                     @RequestParam(value = "postId")Long postId,
+                                                    @RequestParam(value = "parentId")Long parentId,
                                                @RequestParam(value="password")String password) {
         if (!boardService.isExistsReplyId(replyId)) {
             return new ResponseEntity<String>("ReplyId: " + replyId.toString() + " does not exist", HttpStatus.NOT_FOUND);
@@ -276,7 +277,7 @@ public class BoardController {
         }
 
         Boolean isParent = boardService.isParentReply(replyId);
-        boardService.deleteBoardReplyInfo(replyId, postId, password, isParent);
+        boardService.deleteBoardReplyInfo(replyId, postId, parentId, password, isParent);
         return new ResponseEntity<String>("Reply is deleted", HttpStatus.OK);
     }
 
