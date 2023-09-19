@@ -252,7 +252,7 @@ public class BoardController {
         }
 
         boardService.putBoardReplyInfo(replyUpdateInfo);
-        return new ResponseEntity<String>("Reply is updated", HttpStatus.OK);
+        return new ResponseEntity<String>("ReplyId : " + replyUpdateInfo.getReplyId() + " is updated", HttpStatus.OK);
     }
 
     @DeleteMapping("reply")
@@ -279,7 +279,7 @@ public class BoardController {
 
         Boolean isParent = boardService.isParentReply(replyId);
         boardService.deleteBoardReplyInfo(replyId, postId, parentId, password, isParent);
-        return new ResponseEntity<String>("Reply is deleted", HttpStatus.OK);
+        return new ResponseEntity<String>("ReplyID : " + replyId.toString() + " is deleted", HttpStatus.OK);
     }
 
 }
