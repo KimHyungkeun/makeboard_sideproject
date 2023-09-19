@@ -10,7 +10,7 @@
     </select>
 
     <select id="getBoardInfo" resultType="com.sideproject.makeboard.dto.BoardInfo">
-        SELECT id, title, nickname, update_date, COALESCE(reply_count, 0) as reply_count
+        SELECT id, title, nickname, l.update_date, COALESCE(reply_count, 0) as reply_count
         FROM baseboardlist l
         LEFT OUTER JOIN (SELECT post_id, count(post_id) as reply_count FROM baseboardreplylist GROUP BY post_id) r
         ON l.id = r.post_id
