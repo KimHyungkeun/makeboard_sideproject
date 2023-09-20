@@ -30,7 +30,7 @@
         SELECT reply_id, post_id, parent_id, parent_true_false, content, nickname, update_date
         FROM baseboardreplylist
         WHERE post_id = #{postId}
-        ORDER BY parent_id, reply_id;
+        ORDER BY parent_id, reply_id, update_date DESC;
     </select>
 
     <select id="isExistsId" resultType="boolean">
