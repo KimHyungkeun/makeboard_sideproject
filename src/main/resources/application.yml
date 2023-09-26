@@ -3,6 +3,9 @@ spring:
   datasource :
     hikari :
       maximum-pool-size : 1
+      minimum-idle: 1
+      idle-timeout: 6000
+      max-lifetime: 6000
     jdbc-url : jdbc:postgresql://${PSQL_URL}:${PSQL_PORT}/${PSQL_DBNAME}?currentSchema=${PSQL_SCHEMA}
     username : ${PSQL_USERNAME}
     password : ${PSQL_PASSWORD}
