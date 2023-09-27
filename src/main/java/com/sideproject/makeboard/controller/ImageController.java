@@ -28,7 +28,7 @@ public class ImageController {
     @PostMapping
     @Operation(summary = "이미지 파일을 첨부")
     public ResponseEntity<?> setImageInfo(MultipartFile file) throws IOException {
-        String[] imageFileFormat = {"jpg", "png", "jpeg", "gif", "bmp"};
+        String[] imageFileFormat = {"jpg", "png", "jpeg", "gif", "bmp", "webp"};
         String extension = StringUtils.getFilenameExtension(file.getOriginalFilename());
 
         // 파일크기가 20MB를 초과하면 BAD_REQUEST 발생
