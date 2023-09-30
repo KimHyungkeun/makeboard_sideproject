@@ -36,7 +36,7 @@ public class ImageController {
             return new ResponseEntity<String>("File size over 20MB", HttpStatus.BAD_REQUEST);
         }
 
-        // 업로드한 파일이 정의한 5가지 이미지 파일형식이 아니면 BAD_REQEUST 발생
+        // 업로드한 파일이 정의한 6가지 이미지 파일형식이 아니면 BAD_REQEUST 발생
         if (extension == null || !Arrays.asList(imageFileFormat).contains(extension.toLowerCase())) {
             return new ResponseEntity<String>("Must Upload Image file (Allows : jpg, png, jpeg, gif, bmp, webp)", HttpStatus.BAD_REQUEST);
         }
