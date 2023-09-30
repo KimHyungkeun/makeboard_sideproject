@@ -12,8 +12,8 @@
 - Spring Boot 3.1.2
 - Java 17 (Java openjdk 17.0.8)
 - IntelliJ IDEA Community Edition 2023.2 (IDE)
-- Qoddi (무료 WebServer)
-- Elephant SQL (무료 PostgreSQL RDB PostgreSQL 13.9)
+- Qoddi (무료 WebServer) (안내 페이지 : https://qoddi.com)
+- Elephant SQL (무료 PostgreSQL RDB PostgreSQL 13.9) (안내 페이지 : https://www.elephantsql.com)
 - AWS S3 (이미지 업로드 저장 공간. 1년 Free Tier)
 
 # 3. 백엔드 흐름
