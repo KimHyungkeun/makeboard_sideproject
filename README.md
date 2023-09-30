@@ -1,6 +1,6 @@
 # BackEnd 사이드 프로젝트 - 근근웹
 
-- 근근웹 게시판 주소 : https://board.roco.moe
+- 근근웹 게시판 주소 : ~~https://board.roco.moe~~ (Front페이지 URL변경 중)
 
 # 1. 개요
 1) Spring Boot 내용 복습 및 배운 내용을 적용해보기 위한 BackEnd 학습 목적 게시판
