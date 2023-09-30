@@ -16,7 +16,7 @@
 - Elephant SQL (무료 PostgreSQL RDB PostgreSQL 13.9) (안내 페이지 : https://www.elephantsql.com)
 - AWS S3 (이미지 업로드 저장 공간. 1년 Free Tier)
 
-# 3. 백엔드 흐름
+# 3. 백엔드 내부 Flow
 ![근근웹_백엔드_구조](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/7013140a-3933-48e8-a22f-3b6bc59b4489)
 ![근근웹_DB관계도](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/5aa90ad3-fe08-4591-a1ac-e4b46333a376)
 
