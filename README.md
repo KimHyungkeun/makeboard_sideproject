@@ -16,8 +16,11 @@
 - Elephant SQL (무료 PostgreSQL RDB PostgreSQL 13.9)
 
 # 3. 백엔드 흐름
+![근근웹_백엔드_구조](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/2db02b9e-fe0b-4221-832e-dd1e4f401d7d)
+
 
 # 4. 백엔드 REST API 기능 간략 설명
+![근근웹_swagger_ui](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/7e225d80-5312-4a3b-a5ad-2206ea4e5d57)
 1) PUT /board : 게시글 내용 수정
 2) POST /board : 게시판에 글을 새로 등록
 3) DELETE /board : 게시글 삭제하기
