@@ -4,7 +4,7 @@
 
 # 1. 개요
 1) Spring Boot 내용 복습 및 배운 내용을 적용해보기 위한 BackEnd 학습 목적 게시판
-2) 무료 Web 서버와 무료 RDB 서버 활용으로 인해, 관리에 있어 과금이 발생하지 않음
+2) 무료 Web 서버와 무료 RDB 서버 활용으로 인해, 최대한의 저비용 관리를 목표로 함 
 3) 게시글 업로드 및 댓글 기능 제공
 4) 이미지 업로드 기능 제공
 
@@ -14,9 +14,12 @@
 - IntelliJ IDEA Community Edition 2023.2 (IDE)
 - Qoddi (무료 WebServer)
 - Elephant SQL (무료 PostgreSQL RDB PostgreSQL 13.9)
+- AWS S3 (이미지 업로드 저장 공간. 1년 Free Tier)
 
 # 3. 백엔드 흐름
-![근근웹_백엔드_구조](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/2db02b9e-fe0b-4221-832e-dd1e4f401d7d)
+![근근웹_백엔드_구조](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/7013140a-3933-48e8-a22f-3b6bc59b4489)
+![근근웹_DB관계도](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/5aa90ad3-fe08-4591-a1ac-e4b46333a376)
+
 
 
 # 4. 백엔드 REST API 기능 간략 설명
