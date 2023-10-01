@@ -51,3 +51,7 @@
 9) GET /board/replyCount : 게시판 목록에서 게시글 별 댓글 갯수 표시
 10) GET /board/view : 특정 게시글 불러오기
 11) POST /image : 이미지 파일 첨부
+
+# 5. 근근웹 사이트 예시 캡처
+![화면1](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/bb2ccf09-488f-4afc-81ce-83b9a7298775)
+![화면2](https://github.com/KimHyungkeun/makeboard_sideproject/assets/12759500/f5c68a6f-f40d-4a5d-a1a4-b53a301889ac)
